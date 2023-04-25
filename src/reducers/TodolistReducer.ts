@@ -1,4 +1,6 @@
-type InitialType ={
+import {useState} from "react";
+
+type InitialType={
     id: string,
     title: string,
     filter: string
@@ -9,12 +11,13 @@ let initialState:InitialType[]=[
     {id: 'todolistID2', title: 'What to buy', filter: 'all'},
 ]
 
-export const TodoListRedusers = (state=initialState,action:any):InitialType[]=>{
+
+export const TodolistReducer=(state=initialState,action:any):InitialType[]=>{
     switch (action.type){
-        case ' XX':{
+        case "XXX":{
             return state
         }
-        default :return state
+        default:return state
     }
 }
 

@@ -1,4 +1,10 @@
+import {useState} from "react";
 import {v1} from "uuid";
+
+
+type InitialType = {
+    [key: string]: TaskType[]
+}
 
 type TaskType = {
     id: string,
@@ -6,12 +12,7 @@ type TaskType = {
     isDone: boolean
 }
 
-type InitialType = {
-    [key: string]: TaskType[]
-}
-
 let initialState: InitialType = {
-
     ['todolistID1']: [
         {id: v1(), title: "HTML&CSS", isDone: true},
         {id: v1(), title: "JS", isDone: true},
@@ -26,30 +27,25 @@ let initialState: InitialType = {
         {id: v1(), title: "Rest API2", isDone: false},
         {id: v1(), title: "GraphQL2", isDone: false},
     ]
-
 }
-export const TasksReducer = (state = initialState, action: addTaskACType): InitialType => {
+
+
+export const TasksReducer = (state = initialState, action: ActionsType): InitialType => {
     switch (action.type) {
-        case 'ADD-TASK': {
-            return {...state, [action.payload.todolistId]: [action.newTask, ...state[action.payload.todolistId]]}
+        case "ADD-TASK": {
+            const newTask = {id: v1(), title: "NEW-NEW", isDone: true}
+            return {...state, [action.payload.todolistId]: [newTask, ...state[action.payload.todolistId]]}
         }
-        default :
+        default:
             return state
     }
 }
 
+type ActionsType = addTaskACType
 type addTaskACType = ReturnType<typeof addTaskAC>
-
 export const addTaskAC = (todolistId: string) => {
     return {
-        type: 'ADD-TASK',
-        newTask: {
-            id: v1(),
-            title: "newTask",
-            isDone: false
-        },
-        payload: {
-            todolistId
-        }
+        type: "ADD-TASK",
+        payload: {todolistId}
     } as const
 }

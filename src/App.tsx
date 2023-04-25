@@ -7,11 +7,13 @@ import {Todos} from "./Todos";
 
 function App() {
 
-    const todos = useAppSelector(state => state.todos)
+    let todos = useAppSelector(state => state.todos)
+    //console.log(todos)
+
 
     return (
         <div className="App">
-            {todos.map(el=>{
+            {todos.map(el => {
                 return (
                     <Todos
                         key={el.id}
