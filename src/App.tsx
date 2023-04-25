@@ -1,15 +1,25 @@
-import React, {useState} from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
-import {useAppSelector} from "./hooks/hooks";
+import {useAppDispatch, useAppSelector} from "./hooks/hooks";
 import {Todos} from "./Todos";
+import {todolistApi} from "./Api/todolistApi";
+import {getTodolistsTC} from "./reducers/TodolistReducer";
 
 
 function App() {
 
     let todos = useAppSelector(state => state.todos)
     //console.log(todos)
+    const dispatch = useAppDispatch()
 
+    useEffect(() => {
+        // todolistApi.getTodolists()
+        //     .then((res) =>
+        //         console.log(res.data))
+
+        dispatch(getTodolistsTC())
+
+    }, [])
 
     return (
         <div className="App">

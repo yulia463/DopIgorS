@@ -17,7 +17,7 @@ export const Todos: React.FC<PropsType> = (props) => {
 
     let tasks = useAppSelector(state => state.tasks[todolistId])
 
-    const tasksBlock = tasks.map(el => {
+    const tasksBlock = tasks?.map(el => {
         return (
             <li key={el.id}><input type='checkbox' checked={el.isDone}/> <span>{el.title}</span></li>
         )
